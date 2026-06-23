@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Helló Világ! Ez egy Cloud Run alkalmazás, Cloud Build segítségével telepítve.'
+    return 'Helló Világ! Ez egy Cloud Run alkalmazás, Cloud Build segítségével telepítve. Tényleg egyszerű példa.'
 
 if __name__ == "__main__":
     # A Cloud Run a PORT környezeti változóban adja meg a portot.
