@@ -1,9 +1,9 @@
 import os
-from flask import Flask
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import PlainTextResponse
 
-app = Flask(__name__)
-
+app = FastAPI()
 app.add_middleware(
     CORSMiddleware, 
     allow_origins=["*"], 
@@ -11,12 +11,7 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-@app.route('/')
-def hello_world():
-    return 'Helló Világ! Ez egy Cloud Run alkalmazás, Cloud Build segítségével telepítve. Tényleg egyszerű példa.'
 
-if __name__ == "__main__":
-    # A Cloud Run a PORT környezeti változóban adja meg a portot.
-    port = int(os.environ.get('PORT', 8080))
-    # Ne használd a debug=True-t éles környezetben!
-    app.run(host='0.0.0.0', port=port)
+@app.get("/", response_class=PlainTextResponse)
+def hello_world():
+    return 'Helló! A FastAPI backend sikeresen válaszol a Docker konténerből.'
