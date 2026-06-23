@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Cloud Run Frontend</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f4f7f6; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: inline-block; }
+        button { background-color: #4285f4; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Szia a Docker alapú Frontendről! 🐳</h1>
+        <button onclick="fetchBackend()">Backend hívása</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        const BACKEND_URL = 'https://example-cloudrun-cloudbuild-backend-1048974953395.europe-west1.run.app'; 
+        function fetchBackend() {
+            if (BACKEND_URL.includes('IDE_JÖN')) {
+                document.getElementById('result').innerText = "Állítsd be a BACKEND_URL-t!";
+                return;
+            }
+            fetch(BACKEND_URL)
+                .then(res => res.text())
+                .then(data => document.getElementById('result').innerText = "Válasz: " + data)
+                .catch(err => document.getElementById('result').innerText = "Hiba történt!");
+        }
+    </script>
+</body>
+</html>
